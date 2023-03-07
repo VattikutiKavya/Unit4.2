@@ -1,0 +1,67 @@
+<div>
+  <h1 style="text-align-last: center">My Team Players Details</h1>
+  <button type="button" style="margin-right: 10%; margin-left: 38%">
+    <a routerLink="/register" style="text-decoration: none; color: black"
+      >Add a New player</a
+    >
+  </button>
+  <label>Choose filter</label>
+  <select
+    class="select-option"
+    #mySelect
+    (change)="onOptionsSelected(mySelect.value)"
+  >
+    <option value="none">none</option>
+    <option value="role-batsman">Role-Batsman</option>
+    <option value="role-bowler">Role-Bowler</option>
+    <option value="style-right-handed">Style-RightHanded</option>
+    <option value="style-left-handed">Style-Left-Handed</option>
+    <option value="style-spin">Style-Spin</option>
+  </select>
+
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <table style="width: 75%; margin-left: 13%">
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Batting Style</th>
+      <th>Bowling Style</th>
+
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let post of data">
+      <td>{{ post?.name }}</td>
+      <td>{{ post?.role }}</td>
+      <td>{{ post?.battingStyle }}</td>
+      <td>{{ post?.bowlingStyle }}</td>
+      <td>
+        <button type="button" style="margin-right: 15px">
+          <a
+            routerLink="/update"
+            [state]="post"
+            style="text-decoration: none; color: black"
+            >Edit</a
+          >
+        </button>
+        <button type="button" (click)="deleteUser(post.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
